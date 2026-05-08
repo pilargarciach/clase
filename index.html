@@ -14,7 +14,7 @@
 }
 .error {
 	font-weight: bold;
-	color: #FF0000;
+	color: #FF0000;Respuestas
 }
 .warning {
 	font-weight: bold;
@@ -361,7 +361,7 @@ select{
 
         <div class="topbar">
 
-            <h2>Nube de Palabras en Tiempo Real</h2>
+            <h2>Respuestas</h2>
             <button onclick="clearResponses()">
             🗑️ Limpiar respuestas
             </button>
@@ -499,26 +499,23 @@ async function nextQuestion(){
 
     createdAt: Date.now()
 
-
     });
 
-    currentQuestion++;
+    if(currentQuestion <= questions.length - 1){
 
-    if(currentQuestion < questions.length){
+    renderQuestion();
 
-        renderQuestion();
+}else{
 
-    }else{
+    document.getElementById("studentSection")
+        .classList.add("hidden");
 
-        document.getElementById("studentSection")
-            .classList.add("hidden");
-
-        document.getElementById("finishSection")
-            .classList.remove("hidden");
-
-    }
+    document.getElementById("finishSection")
+        .classList.remove("hidden");
 
 }
+
+
 
 /* =========================================================
    DOCENTE - NUBE DE PALABRAS
