@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"> 
+   
 <style type="text/css">
 .inline {
   background-color: #f7f7f7;
@@ -76,9 +82,20 @@
 <style>
 
 body{
+   body{
+
     margin:0;
-    font-family:Arial, sans-serif;
-    background:#f3f4f6;
+
+    font-family:'Poppins', sans-serif;
+
+    background-image:url('https://images.unsplash.com/photo-1509062522246-3755977927d7');
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-attachment:fixed;
+
 }
 
 .container{
@@ -89,15 +106,20 @@ body{
 }
 
 h1{
+
     text-align:center;
-    color:#111827;
+
+    color:#0B1F3A;
+
+    font-weight:600;
+
 }
 
 .card{
-    background:white;
-    padding:30px;
-    border-radius:20px;
-    box-shadow:0 4px 10px rgba(0,0,0,.1);
+
+    background:rgba(255,255,255,0.88);
+
+    backdrop-filter:blur(8px);
     margin-top:20px;
 }
 
@@ -115,23 +137,36 @@ button{
     padding:15px 25px;
     border:none;
     border-radius:12px;
-    background:#2563eb;
+    background:#1D4ED8;
     color:white;
     font-size:18px;
     cursor:pointer;
 }
 
 button:hover{
-    opacity:.9;
+
+    transform:scale(1.05);
+
+    background:#2563EB;
+
 }
 
 canvas{
+
     margin-top:20px;
+
     width:100%;
+
     height:auto;
-    border-radius:15px;
-    background:white;
-    border:2px solid #ddd;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,0.92);
+
+    border:2px solid rgba(255,255,255,.5);
+
+    box-shadow:0 6px 20px rgba(0,0,0,.15);
+
 }
 
 select{
@@ -158,13 +193,27 @@ select{
 }
 
 .role-buttons button{
-    margin:10px;
-}
 
-.success{
-    font-size:24px;
-    color:green;
-    text-align:center;
+    margin-top:20px;
+
+    padding:15px 25px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#1D4ED8;
+
+    color:white;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    transition:all .3s ease;
+
+    box-shadow:0 4px 10px rgba(0,0,0,.15);
+
 }
 
 </style>
@@ -368,11 +417,12 @@ async function nextQuestion(){
 
     await db.collection("responses").add({
 
-        questionIndex: currentQuestion,
+    questionIndex: Number(currentQuestion),
 
-        answer: answer,
+    answer: answer,
 
-        createdAt: new Date()
+    createdAt: Date.now()
+
 
     });
 
@@ -403,14 +453,14 @@ const selector =
 
 selector.addEventListener("change", () => {
 
-    loadCloud(Number(selector.value));
+    loadCloud(parseInt(selector.value));
 
 });
 
 function loadCloud(questionIndex){
 
     db.collection("responses")
-    .where("questionIndex", "==", questionIndex)
+    .where("questionIndex", "==", Number(questionIndex))
     .onSnapshot(snapshot => {
 
         const texts = [];
