@@ -237,6 +237,9 @@ select{
         <div class="topbar">
 
             <h2>Nube de Palabras en Tiempo Real</h2>
+            <button onclick="clearResponses()">
+🗑️ Limpiar respuestas
+</button>
 
             <select id="questionSelector">
 
@@ -460,6 +463,33 @@ function generateCloud(texts){
         rotateRatio: 0.3
 
     });
+
+}
+
+/* =====================================================
+   BORRAR RESPUESTAS
+===================================================== */
+
+async function clearResponses(){
+
+    const snapshot =
+        await db.collection("responses").get();
+
+    const promises = [];
+
+    snapshot.forEach((doc)=>{
+
+        promises.push(
+            db.collection("responses")
+            .doc(doc.id)
+            .delete()
+        );
+
+    });
+
+    await Promise.all(promises);
+
+    alert("Todas las respuestas fueron eliminadas");
 
 }
 
