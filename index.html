@@ -493,28 +493,31 @@ async function nextQuestion(){
 
     await db.collection("responses").add({
 
-    questionIndex: Number(currentQuestion),
+        questionIndex: Number(currentQuestion),
 
-    answer: answer,
+        answer: answer,
 
-    createdAt: Date.now()
+        createdAt: Date.now()
 
     });
 
-    if(currentQuestion <= questions.length - 1){
+    currentQuestion++;
 
-    renderQuestion();
+    if(currentQuestion < questions.length){
 
-}else{
+        renderQuestion();
 
-    document.getElementById("studentSection")
-        .classList.add("hidden");
+    }else{
 
-    document.getElementById("finishSection")
-        .classList.remove("hidden");
+        document.getElementById("studentSection")
+            .classList.add("hidden");
+
+        document.getElementById("finishSection")
+            .classList.remove("hidden");
+
+    }
 
 }
-
 
 
 /* =========================================================
