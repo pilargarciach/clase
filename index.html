@@ -349,11 +349,13 @@ select{
 
     margin-bottom:10px;
 
-    filter:drop-shadow(
-        0 10px 25px rgba(0,0,0,.35)
-    );
+    object-fit:contain;
 
-    transition:all .3s ease;
+    mix-blend-mode:screen;
+
+    filter:
+    drop-shadow(0 0 12px rgba(59,130,246,.35))
+    drop-shadow(0 10px 25px rgba(0,0,0,.35));
 
 }
 
